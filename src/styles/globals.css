@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: 15 23 42; /* #0F172A */
+  --color-primary-foreground: 248 250 252;
+  --color-secondary: 56 189 248; /* light blue */
+  --color-secondary-foreground: 15 23 42;
+  --color-accent: 234 179 8; /* gold */
+  --color-accent-foreground: 28 25 23;
+
+  --color-neutral-50: 248 250 252;
+  --color-neutral-100: 241 245 249;
+  --color-neutral-200: 226 232 240;
+  --color-neutral-300: 203 213 225;
+  --color-neutral-400: 148 163 184;
+  --color-neutral-500: 100 116 139;
+  --color-neutral-600: 71 85 105;
+  --color-neutral-700: 51 65 85;
+  --color-neutral-800: 30 41 59;
+  --color-neutral-900: 15 23 42;
+
+  --color-success: 16 185 129;
+  --color-success-foreground: 236 253 245;
+  --color-error: 239 68 68;
+  --color-error-foreground: 254 242 242;
+
+  --color-background: 255 255 255;
+  --color-foreground: 15 23 42;
+  --color-border: 226 232 240;
+  --color-input: 255 255 255;
+  --color-ring: 56 189 248;
+}
+
+.dark {
+  --color-primary: 248 250 252;
+  --color-primary-foreground: 15 23 42;
+  --color-secondary: 14 165 233;
+  --color-secondary-foreground: 248 250 252;
+  --color-accent: 250 204 21;
+  --color-accent-foreground: 15 23 42;
+
+  --color-neutral-50: 15 23 42;
+  --color-neutral-100: 30 41 59;
+  --color-neutral-200: 51 65 85;
+  --color-neutral-300: 71 85 105;
+  --color-neutral-400: 100 116 139;
+  --color-neutral-500: 148 163 184;
+  --color-neutral-600: 203 213 225;
+  --color-neutral-700: 226 232 240;
+  --color-neutral-800: 241 245 249;
+  --color-neutral-900: 248 250 252;
+
+  --color-success: 52 211 153;
+  --color-success-foreground: 6 78 59;
+  --color-error: 248 113 113;
+  --color-error-foreground: 127 29 29;
+
+  --color-background: 2 6 23;
+  --color-foreground: 241 245 249;
+  --color-border: 51 65 85;
+  --color-input: 15 23 42;
+  --color-ring: 125 211 252;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html[dir='rtl'] {
+    direction: rtl;
+  }
+
+  html[dir='ltr'] {
+    direction: ltr;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans text-body antialiased;
+  }
+
+  html[lang='ar'] body {
+    @apply font-arabic;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+
+  h2 {
+    @apply text-h2;
+  }
+
+  h3 {
+    @apply text-h3;
+  }
+
+  h4 {
+    @apply text-h4;
+  }
+
+  h5 {
+    @apply text-h5;
+  }
+
+  h6 {
+    @apply text-h6;
+  }
+
+  p {
+    @apply text-body;
+  }
+
+  small {
+    @apply text-small;
+  }
+}
+
+@layer utilities {
+  .dir-aware-row {
+    @apply flex items-center;
+  }
+
+  html[dir='ltr'] .dir-aware-row {
+    @apply flex-row;
+  }
+
+  html[dir='rtl'] .dir-aware-row {
+    @apply flex-row-reverse;
+  }
+
+  .dir-aware-space > :not([hidden]) ~ :not([hidden]) {
+    margin-inline-start: 0.5rem;
+  }
+
+  html[dir='rtl'] .dir-aware-icon {
+    transform: scaleX(-1);
+  }
+
+
+  .heart-pop {
+    animation: heart-pop 260ms ease-out;
+  }
+
+  @keyframes heart-pop {
+    0% {
+      transform: scale(0.7);
+    }
+    60% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+
+  .page-transition {
+    animation: page-fade 320ms ease-out;
+  }
+
+  .hover-lift {
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -16px rgb(15 23 42 / 0.35);
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgb(var(--color-neutral-200) / 0.85) 25%,
+      rgb(var(--color-neutral-100) / 0.95) 40%,
+      rgb(var(--color-neutral-200) / 0.85) 60%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.4s ease-in-out infinite;
+  }
+
+  @keyframes page-fade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-position: 100% 0;
+    }
+    100% {
+      background-position: -100% 0;
+    }
+  }
+}
